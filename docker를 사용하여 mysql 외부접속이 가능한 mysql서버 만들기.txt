@@ -1,0 +1,8 @@
+1. 도커를 실행시키고 cmd창에서 mysql 컨테이너를 제작한다.
+(docker run -d -p <원하는 포트번호>:3306 -e MYSQL_ROOT_PASSWORD=<원하는 root 비밀번호> --name <컨테이너 이름> -v <마운트할 파일 경로>:/var/lib/mysql mysql:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+cmd창에서 명령어는 이와 같이 한다.)
+
+2.cmd창에서 docker exec -it mysql컨테이너 이름 bash 명령어 -> mysql -u root -p
+명령어 를 사용하여 mysql에 접근하고 CREATE USER '새로운 사용자 이름'@'%' IDENTIFIED BY '사용자 비밀번호'; -> GRANT ALL PRIVILEGES ON *.* TO '새로운 사용자 이름'@'%'; -> flush privileges; 명령어 순서로 진행하여 새로운 사용자를 만들고 권한을 부여한다.
+
+3.mysql workbench를 실행하고 (+)버튼을 눌러서 connection name, hostname, port, username을 입력한다. hostname은 cmd창에서 ipconfig 명령어를 치고 나오는 ipv4 ip를 입력한다. port는 1에서 지정한 원하는 포트번호를 적는다. username은 새로 만든 사용자 이름을 적는다. 그리고 test connection을 클릭하여 연결이 되는지 확인하고 연결이 되면 ok를 누른다.
